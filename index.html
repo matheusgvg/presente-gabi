@@ -6,6 +6,11 @@
 <title>Feliz Aniversário, Gabriela</title>
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon.svg">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#2C0B3E">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Presente Gabi">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.3/confetti.browser.min.js"></script>
@@ -94,7 +99,16 @@ section{max-width:520px;margin:0 auto 72px}
 .stars button{width:52px;height:52px;border-radius:50%;border:1px solid var(--gold);background:rgba(212,175,55,.1);color:var(--gold2);font-size:22px;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .stars button.done{background:rgba(212,175,55,.35)}
 .msg{min-height:84px;padding:16px;border-radius:14px;border:1px dashed rgba(243,229,171,.4);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.4;color:var(--pearl);display:flex;align-items:center;justify-content:center}
-@media(max-width:400px){.letter{padding:28px 18px}.letter h2{font-size:25px}.crown{width:124px}.cap{letter-spacing:.2em}.card{padding:16px}.card h3{font-size:14px}.stats{font-size:11px;letter-spacing:.08em}.grid{gap:8px}.bless p{font-size:21px}.msg{font-size:19px}.btn{padding:0 22px}}
+.page-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:-2px}
+.page-actions .btn{animation:none}
+.install-btn[hidden]{display:none}
+.music-panel{position:fixed;right:54px;bottom:24px;z-index:20;width:min(320px,calc(100vw - 108px));border-radius:16px;border:1px solid rgba(243,229,171,.35);background:rgba(21,3,31,.96);box-shadow:0 14px 40px rgba(0,0,0,.45);padding:8px}
+.music-panel[hidden]{display:none}
+.music-panel video{display:block;width:100%;max-height:55vh;border-radius:10px;background:#000}
+.music-status{padding:8px 4px 2px;color:var(--gold2);font-size:12px}
+.music-status:empty{display:none}
+.music-close{position:absolute;top:-10px;right:-10px;width:32px;height:32px;border-radius:50%;border:1px solid var(--gold);background:var(--v2);color:var(--gold2);cursor:pointer}
+@media(max-width:400px){.letter{padding:28px 18px}.letter h2{font-size:25px}.crown{width:124px}.cap{letter-spacing:.2em}.card{padding:16px}.card h3{font-size:14px}.stats{font-size:11px;letter-spacing:.08em}.grid{gap:8px}.bless p{font-size:21px}.msg{font-size:19px}.btn{padding:0 22px}.music-panel{right:38px;bottom:18px;width:calc(100vw - 76px)}}
 @media(hover:none){body{background-attachment:scroll}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}}
 </style>
@@ -119,6 +133,19 @@ section{max-width:520px;margin:0 auto 72px}
   <svg viewBox="0 0 40 40"><path d="M6 24h24c0 6-5 10-12 10S6 30 6 24zM30 22l6-5-1 7M18 34v3M12 37h12M14 24c0-5 4-8 4-13 4 3 7 7 4 13"/></svg>
  </div>
  <button class="btn" id="open">Abrir Homenagem</button>
+ <div class="page-actions">
+  <button class="btn install-btn" id="install" hidden>Instalar página</button>
+  <button class="btn" id="music" type="button">Tocar música</button>
+ </div>
+</div>
+
+<div class="music-panel" id="musicPanel" hidden>
+ <button class="music-close" id="musicClose" type="button" aria-label="Parar música">×</button>
+ <video id="musicPlayer" controls playsinline preload="metadata">
+  <source src="musica.mp4" type="video/mp4">
+  Seu navegador não consegue reproduzir este vídeo.
+ </video>
+ <p class="music-status" id="musicStatus" role="status"></p>
 </div>
 
 <main id="main">
@@ -236,6 +263,60 @@ document.getElementById('candle').addEventListener('click',function(){
  (function f(){boom({particleCount:5,startVelocity:22,spread:360,ticks:80,scalar:.8,origin:{x:Math.random(),y:Math.random()*.5}});if(Date.now()<end)setTimeout(f,220)})();
  setTimeout(function(){document.getElementById('bless').scrollIntoView({behavior:'smooth',block:'center'})},500);
 });
+
+var deferredPrompt=null;
+var installButton=document.getElementById('install');
+window.addEventListener('beforeinstallprompt',function(event){
+ event.preventDefault();
+ deferredPrompt=event;
+ installButton.hidden=false;
+});
+installButton.addEventListener('click',async function(){
+ if(!deferredPrompt)return;
+ deferredPrompt.prompt();
+ await deferredPrompt.userChoice;
+ deferredPrompt=null;
+ installButton.hidden=true;
+});
+window.addEventListener('appinstalled',function(){installButton.hidden=true});
+var isApple=/iphone|ipad|ipod/i.test(navigator.userAgent);
+var isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone;
+if(isApple&&!isStandalone)installButton.hidden=false;
+installButton.addEventListener('click',function(){
+ if(!deferredPrompt&&isApple){
+  alert('Para instalar: toque no botão Compartilhar e depois em “Adicionar à Tela de Início”.');
+ }
+});
+
+var musicButton=document.getElementById('music');
+var musicPanel=document.getElementById('musicPanel');
+var musicPlayer=document.getElementById('musicPlayer');
+var musicStatus=document.getElementById('musicStatus');
+function stopMusic(){
+ musicPlayer.pause();
+ musicPlayer.currentTime=0;
+ musicPanel.hidden=true;
+ musicButton.textContent='Tocar música';
+}
+musicPlayer.addEventListener('error',function(){
+ musicStatus.textContent='Não foi possível reproduzir musica.mp4. Verifique se o arquivo está na pasta do site e se o formato é compatível.';
+});
+musicButton.addEventListener('click',function(){
+ if(!musicPanel.hidden){stopMusic();return}
+ musicStatus.textContent='';
+ musicPanel.hidden=false;
+ musicButton.textContent='Fechar player';
+ musicPlayer.play().catch(function(){
+  musicStatus.textContent='Toque em reproduzir no player para iniciar a música.';
+ });
+});
+document.getElementById('musicClose').addEventListener('click',stopMusic);
+
+if('serviceWorker' in navigator){
+ window.addEventListener('load',function(){
+  navigator.serviceWorker.register('./service-worker.js').catch(function(){});
+ });
+}
 })();
 </script>
 </body>

@@ -73,11 +73,23 @@ presente-gabi/
 ├── .gitattributes
 ├── .gitignore
 ├── LICENSE
+├── icon.svg
+├── index.html
+├── manifest.webmanifest
+├── musica.mp4
 ├── README.md
-└── index.html
+└── service-worker.js
 ```
 
-Todo o conteúdo, os estilos e os comportamentos JavaScript estão concentrados em `index.html`.
+O conteúdo, os estilos e as interações estão em `index.html`. A música é reproduzida localmente a partir de `musica.mp4`; mantenha esse arquivo junto com a página ao publicar o projeto.
+
+## Instalação como aplicativo
+
+Em navegadores compatíveis, o botão **Instalar página** permite adicionar a homenagem à tela inicial.
+
+No iPhone ou iPad, use o botão Compartilhar do Safari e escolha **Adicionar à Tela de Início**.
+
+A página também funciona como PWA com suporte básico a acesso offline, por meio do service worker. O vídeo local não é armazenado no cache offline.
 
 ## Personalização
 
