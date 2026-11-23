@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Feliz Aniversário, Gabriela</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.3/confetti.browser.min.js"></script>
+<style>
+:root{--gold:#D4AF37;--gold2:#F3E5AB;--pearl:#F8F7FA;--amber:#EA580C;--v1:#2C0B3E;--v2:#15031F;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit;margin:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:hidden}
+button{touch-action:manipulation;-webkit-user-select:none;user-select:none}
+body{background:var(--v2);color:var(--pearl);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;line-height:1.75;overflow-x:hidden;min-height:100dvh;
+background:
+radial-gradient(circle at 20% 10%,rgba(243,229,171,.07) 0 1px,transparent 2px) 0 0/90px 90px,
+radial-gradient(circle at 70% 60%,rgba(243,229,171,.06) 0 1px,transparent 2px) 0 0/130px 130px,
+repeating-linear-gradient(90deg,rgba(0,0,0,.22) 0 14px,rgba(255,255,255,.03) 24px,rgba(0,0,0,.22) 40px),
+linear-gradient(180deg,var(--v1),var(--v2) 90%);background-attachment:fixed}
+/* side borders */
+.side{position:fixed;top:0;bottom:0;width:24px;z-index:5;pointer-events:none;
+background:linear-gradient(90deg,rgba(0,0,0,.5),transparent),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M3 22V3h18v15H9V9h7v5' fill='none' stroke='%23E8E6EF' stroke-width='2'/%3E%3C/svg%3E") center top/24px 24px repeat-y;
+border-right:1px solid rgba(232,230,239,.25);box-shadow:inset -10px 0 14px rgba(0,0,0,.35)}
+.side.l{left:0}.side.r{right:0;transform:scaleX(-1)}
+.cord{position:fixed;top:0;bottom:46px;width:3px;z-index:6;background:linear-gradient(#8b5fbf,#5b2f8a);border-radius:2px;pointer-events:none;animation:sway 5s ease-in-out infinite;transform-origin:top}
+.cord.l{left:29px}.cord.r{right:29px;animation-delay:-2s}
+.cord::after{content:"";position:absolute;bottom:-34px;left:-6px;width:15px;height:34px;background:repeating-linear-gradient(90deg,#8b5fbf 0 2px,#3b1659 2px 4px);border-radius:3px 3px 8px 8px}
+@keyframes sway{50%{transform:rotate(.8deg)}}
+main,.portal{position:relative;z-index:2;padding-left:calc(44px + env(safe-area-inset-left,0px));padding-right:calc(44px + env(safe-area-inset-right,0px))}
+@media(min-width:700px){main,.portal{padding-left:90px;padding-right:90px}.side{width:44px}.cord.l{left:52px}.cord.r{right:52px}}
+.cap{font-family:'Montserrat',sans-serif;font-weight:600;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.gold{background:linear-gradient(180deg,var(--gold2),var(--gold) 60%,#a98622);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1,h2{font-family:'Cinzel',serif;font-weight:600}
+/* portal */
+.portal{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;padding-top:24px;padding-bottom:24px;transition:opacity .8s,transform .8s}
+.portal.out{opacity:0;transform:translateY(-30px);pointer-events:none}
+.crown{width:150px;filter:drop-shadow(0 0 14px rgba(212,175,55,.7));animation:glow 3s ease-in-out infinite}
+@keyframes glow{50%{filter:drop-shadow(0 0 26px rgba(243,229,171,.95))}}
+.portal h1.t{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;color:var(--pearl);font-weight:500}
+.portal h1.n{font-family:'Cinzel Decorative','Cinzel',serif;font-size:clamp(44px,15vw,72px);line-height:1.1}
+.sub{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--gold2);max-width:260px;line-height:1.35}
+.icons{display:flex;gap:22px;margin:8px 0}.icons svg{width:34px;height:34px;opacity:.85}
+.btn{min-height:52px;padding:0 30px;border-radius:999px;border:1px solid var(--gold2);background:linear-gradient(180deg,rgba(243,229,171,.22),rgba(212,175,55,.1));color:var(--gold2);font:600 12px 'Montserrat',sans-serif;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;animation:pulse 2.4s infinite;-webkit-tap-highlight-color:transparent}
+.btn:active{transform:scale(.96)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(243,229,171,.5)}100%{box-shadow:0 0 0 18px rgba(243,229,171,0)}}
+.star{position:absolute;width:6px;height:6px;background:var(--gold2);clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);animation:tw 2.5s infinite}
+@keyframes tw{50%{opacity:.15;transform:scale(.5)}}
+/* sections */
+main{display:none;padding-top:48px;padding-bottom:80px}
+main.on{display:block}
+section{max-width:520px;margin:0 auto 72px}
+.sec-t{text-align:center;margin-bottom:26px}.sec-t h2{font-size:26px;margin-top:6px}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s,transform .9s}.rv.in{opacity:1;transform:none}
+.card{width:100%;display:block;text-align:left;margin-bottom:14px;padding:18px 20px;min-height:72px;border-radius:18px;border:1px solid rgba(243,229,171,.35);background:linear-gradient(135deg,rgba(243,229,171,.12),rgba(212,175,55,.04));backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:inherit;font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .2s,border-color .3s}
+.card:active{transform:scale(.985)}
+.card .h{display:flex;align-items:center;gap:14px}.card svg{width:40px;height:40px;flex:none}
+.card h3{font-family:'Cinzel',serif;font-size:15px;line-height:1.3;color:var(--gold2);font-weight:600}
+.card small{display:block;font:500 10px 'Montserrat';letter-spacing:.2em;text-transform:uppercase;color:var(--gold);opacity:.8}
+.card .b{max-height:0;overflow:hidden;opacity:0;transition:max-height .5s,opacity .5s,margin .5s}
+.card.open .b{max-height:220px;opacity:1;margin-top:12px}
+.card.fire{border-color:rgba(234,88,12,.6);background:linear-gradient(135deg,rgba(234,88,12,.18),rgba(212,175,55,.05))}
+.card.fire h3,.card.fire small{color:#f7b27a}
+/* letter */
+.letter{position:relative;padding:34px 26px;border-radius:6px;background:linear-gradient(160deg,rgba(248,247,250,.1),rgba(243,229,171,.06));border:1px solid rgba(212,175,55,.5);box-shadow:inset 0 0 0 6px rgba(21,3,31,.5),inset 0 0 0 7px rgba(212,175,55,.35),0 20px 50px rgba(0,0,0,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.letter h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:28px;margin-bottom:16px;color:var(--gold2);text-align:center}
+.letter p{margin-bottom:18px;color:#efeaf5}
+.letter p.first::first-letter{font-family:'Cinzel Decorative','Cinzel',serif;float:left;font-size:58px;line-height:.85;padding:6px 10px 0 0;color:var(--gold)}
+.sign{text-align:right;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--gold2)}
+/* wish */
+.wish{text-align:center}
+.candle{background:none;border:0;width:140px;height:200px;margin:0 auto;display:block;cursor:pointer;position:relative;-webkit-tap-highlight-color:transparent}
+.flame{transform-origin:50% 100%;opacity:.15;transition:opacity .6s,filter .6s}
+.lit .flame{opacity:1;filter:drop-shadow(0 0 16px #EA580C) drop-shadow(0 0 30px #F3E5AB);animation:fl 1s ease-in-out infinite alternate}
+@keyframes fl{to{transform:scale(1.07,.94) rotate(2deg)}}
+.hint{font:600 11px 'Montserrat';letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-top:6px}
+.bless{max-height:0;overflow:hidden;opacity:0;transition:max-height 1.2s,opacity 1.6s}
+.lit~.bless,.bless.on{max-height:520px;opacity:1}
+.bless p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:23px;line-height:1.45;color:var(--gold2);margin:26px 0}
+.seal{width:130px;height:130px;margin:0 auto;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid var(--gold);background:radial-gradient(circle,#e8c85c,#a98622);color:#2C0B3E;font:600 9px/1.4 'Cinzel',serif;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 0 0 5px rgba(212,175,55,.25),0 10px 30px rgba(0,0,0,.5);transform:rotate(-8deg)}
+.seal b{font-size:13px}
+.game{padding:20px 16px;border-radius:20px;border:1px solid rgba(234,88,12,.55);background:linear-gradient(160deg,rgba(234,88,12,.14),rgba(44,11,62,.6));text-align:center}
+.stats{display:flex;justify-content:space-between;font:600 12px 'Montserrat';letter-spacing:.15em;text-transform:uppercase;color:var(--gold2);margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.cell{aspect-ratio:1;min-height:80px;border-radius:16px;border:1px solid rgba(243,229,171,.3);background:rgba(21,3,31,.6);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:30px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:transform .12s,background .2s}
+.cell:active{transform:scale(.93)}
+.cell svg{width:58%;animation:fl .35s ease-in-out infinite alternate;filter:drop-shadow(0 0 10px #EA580C)}
+.cell.on{background:rgba(234,88,12,.25);border-color:#EA580C}
+.cell.hit{background:rgba(120,190,255,.3)}
+.res{min-height:56px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--gold2);margin-bottom:12px}
+.stars{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.stars button{width:52px;height:52px;border-radius:50%;border:1px solid var(--gold);background:rgba(212,175,55,.1);color:var(--gold2);font-size:22px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.stars button.done{background:rgba(212,175,55,.35)}
+.msg{min-height:84px;padding:16px;border-radius:14px;border:1px dashed rgba(243,229,171,.4);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.4;color:var(--pearl);display:flex;align-items:center;justify-content:center}
+@media(max-width:400px){.letter{padding:28px 18px}.letter h2{font-size:25px}.crown{width:124px}.cap{letter-spacing:.2em}.card{padding:16px}.card h3{font-size:14px}.stats{font-size:11px;letter-spacing:.08em}.grid{gap:8px}.bless p{font-size:21px}.msg{font-size:19px}.btn{padding:0 22px}}
+@media(hover:none){body{background-attachment:scroll}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="side l"></div><div class="side r"></div><div class="cord l"></div><div class="cord r"></div>
+
+<div class="portal" id="portal">
+ <span class="star" style="top:12%;left:24%"></span><span class="star" style="top:20%;right:22%;animation-delay:-1s"></span><span class="star" style="top:9%;right:38%;animation-delay:-.5s"></span><span class="star" style="top:30%;left:16%;animation-delay:-1.7s"></span>
+ <svg class="crown" viewBox="0 0 120 80" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3E5AB"/><stop offset="1" stop-color="#B8921F"/></linearGradient></defs>
+  <path d="M10 66 L16 26 L38 46 L60 14 L82 46 L104 26 L110 66 Z" fill="url(#g)" stroke="#F3E5AB" stroke-width="1.5"/>
+  <rect x="10" y="66" width="100" height="9" rx="2" fill="url(#g)"/>
+  <circle cx="16" cy="24" r="4.5" fill="#F8F7FA"/><circle cx="60" cy="11" r="5.5" fill="#F8F7FA"/><circle cx="104" cy="24" r="4.5" fill="#F8F7FA"/>
+  <circle cx="60" cy="52" r="5" fill="#7a2fb5"/><circle cx="38" cy="58" r="3" fill="#7a2fb5"/><circle cx="82" cy="58" r="3" fill="#7a2fb5"/></svg>
+ <p class="cap">23 de novembro de 2026 • Edição especial</p>
+ <h1 class="t">Feliz Aniversário</h1>
+ <h1 class="n gold">Gabriela</h1>
+ <p class="sub">À nossa Honorável Rainha &amp; Futura Bombeira</p>
+ <div class="icons" aria-hidden="true" stroke="#D4AF37" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <svg viewBox="0 0 40 40"><path d="M6 24c6 2 10-1 12-6 2 4 6 6 11 4-3 4-8 6-13 5l-4 5 1-6c-3 0-5-1-7-2zM18 18c0-5 4-9 10-9-1 4-4 7-10 9zM30 20l6-3-5 7"/></svg>
+  <svg viewBox="0 0 40 40"><path d="M8 12c10-4 22 2 26 12-8 4-20 2-26-12zM8 12c-2 6 0 12 6 14M34 24c2-2 4-1 4 1M14 22c1-3 4-4 7-3M22 25c2-1 4 0 5 2"/></svg>
+  <svg viewBox="0 0 40 40"><path d="M6 24h24c0 6-5 10-12 10S6 30 6 24zM30 22l6-5-1 7M18 34v3M12 37h12M14 24c0-5 4-8 4-13 4 3 7 7 4 13"/></svg>
+ </div>
+ <button class="btn" id="open">Abrir Homenagem</button>
+</div>
+
+<main id="main">
+ <section class="rv">
+  <div class="sec-t"><p class="cap">Os Pilares</p><h2 class="gold">A Gabriela</h2></div>
+  <button class="card"><div class="h"><svg viewBox="0 0 40 40" fill="none" stroke="#D4AF37" stroke-width="1.8" stroke-linejoin="round"><path d="M6 30l3-16 8 8 3-12 3 12 8-8 3 16z"/><path d="M6 34h28"/></svg><div><small>Liderança e Sabedoria</small><h3>A Honorável Rainha</h3></div></div><p class="b">Maturidade 10 anos à frente, liderança serena, educação e o respeito que guiam o Bethel.</p></button>
+  <button class="card fire"><div class="h"><svg viewBox="0 0 40 40" fill="none" stroke="#EA580C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4c2 8 10 10 10 20a10 10 0 0 1-20 0c0-4 2-6 4-8 0 3 2 4 3 4-1-6 0-12 3-16z"/></svg><div><small>Disciplina e Foco</small><h3>A Força da Calistenia</h3></div></div><p class="b">Enquanto muitos descansam, você treina e se esforça diariamente. Disciplina que inspira.</p></button>
+  <button class="card fire"><div class="h"><svg viewBox="0 0 40 40" fill="none" stroke="#EA580C" stroke-width="1.8" stroke-linejoin="round"><path d="M20 4l13 5v10c0 9-6 14-13 17C13 33 7 28 7 19V9z"/><path d="M20 14c1 4 5 5 5 9a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 2 1.500 2-.5-3 0-5 1.500-7z"/></svg><div><small>Vocação de Proteger</small><h3>O Sonho de ser Bombeira</h3></div></div><p class="b">O propósito nobre de dedicar a vida para salvar e proteger o próximo. Coragem de guerreira.</p></button>
+  <p class="hint" style="text-align:center;opacity:.7">Toque nos cartões</p>
+ </section>
+
+ <section class="rv">
+  <div class="letter">
+   <h2>Feliz Aniversário Gabriela!</h2>
+   <p class="first">Hoje tenho somente a te parabenizar por ser essa menina incrível, educada, gentil, dedicada, esforçada, inteligente e claro linda kkkk (sou suspeito em dizer).</p>
+   <p>Desde que te conheci, tomei um susto, pois estava conversando com uma moça tão jovem, mas que parecia ter uma maturidade 10 anos à frente, com objetivos definidos, metas, sonhos, e não apenas ter objetivos, mas métodos e esforços hoje para atingi-los.</p>
+   <p>Ao longo dos dias após a quadrilha do Bethel, quando você me contou que fazia calistenia por causa do preparatório para ser bombeira, isso me encantou, porque nesta geração poucos querem algo depois da escola, e entre esses poucos, menos pessoas ainda fazem esforços no hoje para atingir seus sonhos. Estudar, fazer exercícios ou qualquer coisa que você faça porque quer alcançar seu sonho só te engrandece e te torna especial.</p>
+   <p>Bom, ficou claro que sou um admirador de todos os seus sucessos, super guerreira! Eu gostaria de fazer deste parágrafo também uma homenagem para esse teu sorriso que infelizmente eu tive a sorte de ver apenas uma vez diante dos meus olhos.</p>
+   <p>Que o Pai Celestial nunca deixe você desanimar de todos os seus sonhos, que Ele abençoe todos os seus caminhos, a sua saúde, os seus longos anos de vida, a sua prosperidade e união, para que todos os bens que lhe aguardam te tragam felicidade e, acima de tudo, paz. Que Nossa Senhora te proteja e te guarde.</p>
+   <p>Eu acho que é isso, prima! Feliz Aniversário!!! 🎂🎉</p>
+   <p class="sign">Ass: Seu Demolay Favorito</p>
+  </div>
+ </section>
+
+ <section class="rv">
+  <div class="sec-t"><p class="cap">Missão Especial</p><h2 class="gold">Resgate em Chamas</h2></div>
+  <div class="game">
+   <div class="stats"><span>Tempo <b id="gt">30</b></span><span>Apagadas <b id="gs">0</b></span><span>Recorde <b id="gb">0</b></span></div>
+   <div class="grid" id="grid"></div>
+   <p class="res" id="gr">Toque nas chamas antes que cresçam. Você tem 30 segundos, futura bombeira!</p>
+   <button class="btn" id="gstart" style="animation:none">Iniciar Missão</button>
+  </div>
+ </section>
+
+ <section class="rv">
+  <div class="sec-t"><p class="cap">Segredos da Coroa</p><h2 class="gold">Estrelas Surpresa</h2></div>
+  <div class="stars" id="stars"></div>
+  <div class="msg" id="msg">Toque em uma estrela ✦</div>
+ </section>
+
+ <section class="rv wish" id="wish">
+  <div class="sec-t"><p class="cap">Fazer um Pedido</p><h2 class="gold">A Chama dos Sonhos</h2></div>
+  <div id="w">
+  <button class="candle" id="candle" aria-label="Acender a Chama dos Sonhos">
+   <svg viewBox="0 0 140 200" aria-hidden="true"><defs><linearGradient id="c" x1="0" x2="1"><stop offset="0" stop-color="#d9c27a"/><stop offset=".5" stop-color="#F8F7FA"/><stop offset="1" stop-color="#b79a45"/></linearGradient></defs>
+    <rect x="52" y="90" width="36" height="100" rx="4" fill="url(#c)"/><rect x="40" y="186" width="60" height="8" rx="3" fill="#D4AF37"/><path d="M70 90v-10" stroke="#3b1659" stroke-width="2.500"/>
+    <g class="flame"><path d="M70 20c4 18 20 22 14 42-3 10-11 18-14 18s-11-8-14-18c-6-20 10-24 14-42z" fill="#EA580C"/><path d="M70 42c3 10 10 12 8 24-1 6-5 10-8 10s-7-4-8-10c-2-12 5-14 8-24z" fill="#F3E5AB"/></g></svg>
+  </button>
+  <p class="hint" id="hint">Toque para acender</p>
+  <div class="bless" id="bless">
+   <p>“Que o Pai Celestial e Nossa Senhora abençoem o seu reinado, a sua força e o seu futuro na farda de bombeira. Parabéns, Rainha!”</p>
+   <div class="seal"><span>Do seu</span><b>DeMolay favorito</b><span>• 23.11.2026 •</span></div>
+  </div>
+  </div>
+ </section>
+</main>
+
+<script>
+(function(){
+var C=['#D4AF37','#F3E5AB','#7a2fb5','#F8F7FA'];
+function buzz(n){try{navigator.vibrate&&navigator.vibrate(n)}catch(e){}}
+function boom(o){try{confetti(Object.assign({colors:C,zIndex:50,disableForReducedMotion:true},o))}catch(e){}}
+var portal=document.getElementById('portal'),main=document.getElementById('main');
+document.getElementById('open').addEventListener('click',function(){
+ buzz(30);
+ boom({particleCount:140,spread:90,origin:{y:.7}});
+ boom({particleCount:60,angle:60,spread:60,origin:{x:0,y:.8}});
+ boom({particleCount:60,angle:120,spread:60,origin:{x:1,y:.8}});
+ portal.classList.add('out');
+ setTimeout(function(){portal.style.display='none';main.classList.add('on');window.scrollTo(0,0);observe();},800);
+});
+function observe(){
+ var els=document.querySelectorAll('.rv');
+ if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+ els.forEach(function(e){io.observe(e)});
+}
+document.querySelectorAll('.card').forEach(function(c){c.addEventListener('click',function(){buzz(12);c.classList.toggle('open')})});
+var FL='<svg viewBox="0 0 80 100"><path d="M40 4c5 20 28 26 28 52a28 28 0 0 1-56 0c0-14 8-20 14-28 0 10 6 14 8 14-4-18 0-28 6-38z" fill="#EA580C"/><path d="M40 48c4 12 14 14 14 28a14 14 0 0 1-28 0c0-10 8-16 14-28z" fill="#F3E5AB"/></svg>';
+var grid=document.getElementById('grid'),cells=[],score=0,left=30,tm=null,sp=null,run=false,best=0;
+for(var i=0;i<9;i++){var b=document.createElement('button');b.className='cell';b.setAttribute('aria-label','Área '+(i+1));b.addEventListener('click',(function(b){return function(){
+ if(run&&b.classList.contains('on')){b.classList.remove('on');b.innerHTML='💧';b.classList.add('hit');clearTimeout(b._t);score++;buzz(10);document.getElementById('gs').textContent=score;setTimeout(function(){b.classList.remove('hit');b.innerHTML=''},250)}
+}})(b));grid.appendChild(b);cells.push(b)}
+function spawn(){
+ var free=cells.filter(function(c){return !c.classList.contains('on')&&!c.classList.contains('hit')});if(!free.length)return;
+ var c=free[Math.floor(Math.random()*free.length)];c.classList.add('on');c.innerHTML=FL;
+ c._t=setTimeout(function(){c.classList.remove('on');c.innerHTML=''},1300-Math.min(500,(30-left)*18));
+}
+function endGame(){
+ run=false;clearInterval(tm);clearInterval(sp);cells.forEach(function(c){c.classList.remove('on','hit');c.innerHTML='';clearTimeout(c._t)});
+ if(score>best){best=score;document.getElementById('gb').textContent=best}
+ var r=score>=20?'Capitã Gabriela! Missão cumprida com honra. 🚒':score>=12?'Sargento Gabriela! Coragem de sobra. 🔥':'Cadete Gabriela! Todo grande resgate começa com treino. 💪';
+ document.getElementById('gr').textContent=r+' ('+score+' chamas apagadas)';
+ var s=document.getElementById('gstart');s.textContent='Jogar de novo';s.disabled=false;
+ boom({particleCount:90,spread:80,origin:{y:.6},colors:['#EA580C','#F3E5AB','#D4AF37']});buzz([20,30,20]);
+}
+document.getElementById('gstart').addEventListener('click',function(){
+ if(run)return;run=true;score=0;left=30;this.disabled=true;
+ document.getElementById('gs').textContent='0';document.getElementById('gt').textContent='30';document.getElementById('gr').textContent='Vai! Apague tudo!';
+ tm=setInterval(function(){left--;document.getElementById('gt').textContent=left;if(left<=0)endGame()},1000);
+ sp=setInterval(spawn,620);spawn();
+});
+var M=['Disciplina é fazer hoje o que o seu eu do futuro vai agradecer.','Quem sonha em proteger vidas já começa a proteger o próprio sonho todos os dias.','Uma Rainha não é a coroa que usa, é o jeito como conduz os outros.','Cada treino é um passo a mais rumo à sua farda.','Que o seu sorriso seja visto muitas e muitas vezes. 😊'];
+var st=document.getElementById('stars'),seen=0;
+M.forEach(function(t,i){var b=document.createElement('button');b.textContent='✦';b.setAttribute('aria-label','Estrela '+(i+1));b.addEventListener('click',function(){
+ document.getElementById('msg').textContent=t;buzz(12);
+ if(!b.classList.contains('done')){b.classList.add('done');seen++;boom({particleCount:25,spread:50,origin:{y:.7},scalar:.8});
+  if(seen===M.length)setTimeout(function(){document.getElementById('msg').textContent='Todas as estrelas acesas: o céu inteiro é seu, Rainha! 👑'},1800)}});st.appendChild(b)});
+var w=document.getElementById('w'),lit=false;
+document.getElementById('candle').addEventListener('click',function(){
+ if(lit)return;lit=true;buzz([20,40,20]);
+ w.classList.add('lit');document.getElementById('bless').classList.add('on');
+ document.getElementById('hint').textContent='Pedido feito ✦';
+ var end=Date.now()+2500;
+ (function f(){boom({particleCount:5,startVelocity:22,spread:360,ticks:80,scalar:.8,origin:{x:Math.random(),y:Math.random()*.5}});if(Date.now()<end)setTimeout(f,220)})();
+ setTimeout(function(){document.getElementById('bless').scrollIntoView({behavior:'smooth',block:'center'})},500);
+});
+})();
+</script>
+</body>
+</html>
